@@ -12,7 +12,7 @@
     font-size: 17px;
     padding: 20px;
     text-align: center;
-    line-height:normal;
+    line-height:30px;
 }
 
 .Home__image-bike {
@@ -20,4 +20,15 @@
     width: 200px;
     height: 200px;
     margin: 0 auto;
+}
+
+.Home__link_toReportTheft {
+    border: 1px solid black;
+    padding: 2px;
+    color: black;
+    display: inline-block;
+}
+
+.Home__link_toReportTheft:hover {
+    background-color:lightslategrey;
 }

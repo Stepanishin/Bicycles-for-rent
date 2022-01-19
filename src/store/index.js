@@ -1,11 +1,9 @@
 import { combineReducers, createStore    } from "redux";
-import { changePageReducer } from "./changePageReducer"
-import { nextReducer } from "./nextReducer"
+import { authReducer } from "./authReducer"
 
 
 const rootReducer = combineReducers({
-    changePageReducer,
-    nextReducer
+    authReducer
 })
 
 

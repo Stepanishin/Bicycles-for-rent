@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './HomePage.css'
 import bike from './img/bike.svg'
 
@@ -13,7 +14,7 @@ const Home = () => {
 
             <img className='Home__image-bike' src={bike} alt="bike" />
 
-            <p className='Home-description'>Please report the theft of your bike on the dedicated page "REPORT THEFT"</p>
+            <p className='Home-description'>Please report the theft of your bike on the dedicated page <Link className='Home__link_toReportTheft' to='/reportTheft'>"REPORT THEFT"</Link></p>
         </div>
     );
 };

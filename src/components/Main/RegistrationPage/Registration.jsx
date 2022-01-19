@@ -16,31 +16,36 @@ const Registration = () => {
         setregistrationData({...registrationData, [fieldName]: e.target.value})
     }
 
-    const signUp = (e) => {
+    async function signUp(e) {
         e.preventDefault()
-
-        console.log(registrationData)
 
         const options = {
             method: 'POST',
             body: JSON.stringify(registrationData),
-            header: {
+            headers: {
                 'Content-type': 'application/json;charset=utf-8'
             }
-        }
+        }       
 
-        console.log(options)
-        
-
-        fetch('https://sf-final-project.herokuapp.com/api/auth/sign_up', options)
+        await fetch('https://sf-final-project.herokuapp.com/api/auth/sign_up', options)
         .then(response => response.json())
-        .then(json => console.log(json))
-
-
+        .then(json => localStorage.setItem('newEmployee', JSON.stringify(json)))
+        .then(json => {
+            const status = JSON.parse(localStorage.getItem('newEmployee'))
+            if(status.status === 'OK') {
+                alert('New employee has been added!')
+            } else if (status.status === 'ERR') {
+                alert(status.message)
+            }
+        })
+        
+        setregistrationData({
+            email: '',
+            firstName: '',
+            lastName: '',
+            password: '',
+            clientId: ''})
     }
-
-    
-   
 
     return (
         <form className='Registration' onSubmit={signUp}>
@@ -50,7 +55,7 @@ const Registration = () => {
             <input type="text" name="lastName" id="lastName" placeholder='Enter lastName' onChange={handleChange} value={registrationData.lastName} />
             <input required type="password" name="password" id="password" placeholder='Enter password' onChange={handleChange} value={registrationData.password} />
             <input required type="text" name="clientId" id="clientId" placeholder='Enter clientId' onChange={handleChange} value={registrationData.clientId} />
-            <input type="submit" value="Register" />
+            <input className='input_submit' type="submit" value="Register" />
         </form>
     );
 };

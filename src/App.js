@@ -1,27 +1,38 @@
 import React from 'react'
-// import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
-import Main from './components/Main/Main';
+import AllTheft from './components/Main/AllTheftPage/AllTheft';
+import Theft from './components/Main/AllTheftPage/Theft';
+import Authorization from './components/Main/AuthorizationPage/Authorization';
+import Home from './components/Main/HomePage/Home';
+import Registration from './components/Main/RegistrationPage/Registration';
+import ReportTheft from './components/Main/ReportTheftPage/ReportTheft';
+import Employee from './components/Main/ResponsibleEmployeesPage/Employee';
+import ResponsibleEmployees from './components/Main/ResponsibleEmployeesPage/ResponsibleEmployees';
+import './App.css'
+import Footer from './components/Footer/Footer';
 
 function App() {
 
-  // const {store} = props
-
-  // const dispatch = useDispatch()
-
-  // const visiblePage = useSelector(state => state.cash)
-
-  // console.log(visiblePage)
-
-
-
-
   return (
-    <div className="App">
-      <Header />
-      <Main />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <main className='main'>
+          <Routes>
+            <Route path='/' element={<Home />} />    
+            <Route path='/reportTheft' element={<ReportTheft />} />  
+            <Route path='/allTheft' element={<AllTheft />} />   
+            <Route path='/responsibleEmployees' element={<ResponsibleEmployees />} />    
+            <Route path='/registration' element={<Registration />} />
+            <Route path='/authorization' element={<Authorization />} />
+            <Route path='/allTheft/:id' element={<Theft />} />
+            <Route path='/responsibleEmployees/:id' element={<Employee />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
